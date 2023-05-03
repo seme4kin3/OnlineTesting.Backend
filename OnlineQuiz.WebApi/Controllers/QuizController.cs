@@ -73,7 +73,7 @@ namespace OnlineQuiz.WebApi.Controllers
         [HttpDelete("{id}"), Authorize]
         public async Task<IActionResult> DeleteQuiz(Guid id)
         {
-            var quiz = _db.FindQuiz(id);
+            var quiz = await _db.FindQuiz(id);
             if (quiz == null) return NotFound();
             await _db.DeleteQuiz(id);
             return NoContent();

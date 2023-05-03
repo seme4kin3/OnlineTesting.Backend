@@ -29,14 +29,14 @@ namespace OnlineQuiz.WebApi.Services
 
         public async Task<Quiz> CreateQuiz(Quiz quiz)
         {
-            _context.Quizs.Add(quiz);
+            await _context.Quizs.AddAsync(quiz);
             await _context.SaveChangesAsync();
             return await FindQuiz(quiz.Id);
         }
 
         public async Task DeleteQuiz(Guid id)
         {
-            var remove = _context.Quizs.Find(id);
+            var remove = await _context.Quizs.FindAsync(id);
             _context.Quizs.Remove(remove);
             await _context.SaveChangesAsync();
         }
